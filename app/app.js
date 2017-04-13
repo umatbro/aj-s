@@ -16,7 +16,7 @@ phonecatApp.controller('PhoneListController', function PhoneListController($scop
  ];
 
  $scope.name = "world";
-$scope.cityName = "Kato";
+$scope.cityName = "zende";
 var getQ = "http://codingchallenge.chathamfinancial.com/api/cities/search?byName=" + $scope.cityName;
 
    //https://www.w3schools.com/angular/angular_http.asp
