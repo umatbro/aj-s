@@ -6,15 +6,14 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <script src="bower_components/angular/angular.js"></script>
     <script src="app.js"></script>
+    <script src="phone-list.component.js"></script>
   </head>
-  <body ng-controller="PhoneListController">
-  <br/><br/>
-  <input type="text" ng-model="cityName" />
-  {{cityName}}<br/>
-  <p ng-repeat="prediction in apiResponse.predictions">{{ prediction.description }}</p>
+  <body>
+    <!-- Use custom component to render a list of phones -->
+    <phone-list></phone-list>
 
-    <p>Odpowiedź API:
-    {{apiResponse}}</p>
-
+    <br/><br/><br/>
+    <phone-list></phone-list>
+    <phone-list></phone-list>
   </body>
 </html>
