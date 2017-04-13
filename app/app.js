@@ -16,10 +16,13 @@ phonecatApp.controller('PhoneListController', function PhoneListController($scop
  ];
 
  $scope.name = "world";
+$scope.cityName = "Kato";
+var getQ = "http://codingchallenge.chathamfinancial.com/api/cities/search?byName=" + $scope.cityName;
 
- //https://www.w3schools.com/angular/angular_http.asp
- $http.get("http://codingchallenge.chathamfinancial.com/api/forecast?latitude=50.26489189999999&longitude=1&source=WORLD_WEATHER")
- .then(function(response){
-   $scope.apiResponse = response.data;
- })
+   //https://www.w3schools.com/angular/angular_http.asp
+   //$http.get("http://codingchallenge.chathamfinancial.com/api/forecast?latitude=50.26489189999999&longitude=1&source=WORLD_WEATHER")
+   $http.get(getQ)
+   .then(function(response){
+     $scope.apiResponse = response.data;
+   })
 });

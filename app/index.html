@@ -29,7 +29,12 @@
     </tr>
   </table>
 
-    <p>Odpowiedź API: <br/>
+  <br/><br/>
+  <input type="text" ng-model="cityName" />
+  {{cityName}}<br/>
+  <p ng-repeat="prediction in apiResponse.predictions">{{ prediction.description }}</p>
+
+    <p>Odpowiedź API:
     {{apiResponse}}</p>
 
   </body>
