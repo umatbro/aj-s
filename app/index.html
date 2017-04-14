@@ -1,20 +1,31 @@
 <!doctype html>
-<html lang="en" ng-app="phonecatApp">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>My HTML File</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="bower_components/angular/angular.js"></script>
-    <script src="app.js"></script>
+    <script src="weather-controller.js"></script>
   </head>
-  <body ng-controller="PhoneListController">
-  <br/><br/>
-  <input type="text" ng-model="cityName" />
-  {{cityName}}<br/>
-  <p ng-repeat="prediction in apiResponse.predictions">{{ prediction.description }}</p>
-
-    <p>Odpowiedź API:
-    {{apiResponse}}</p>
-
+  <body ng-app="weatherApp">
+    <div class="container-fluid" ng-controller="place_idController">
+    <br/><br/>
+    <div class="col-md-2">
+      <a ng-click="getCoords(ChIJ0RhONcBEFkcRv4pHdrW2a7Q)">Kraków</a>
+    </div>
+    <div class="col-md-8">
+      <form ng-submit="searchCity($scope.cityName)">
+        <input type="text" ng-model="cityName" />
+        <input type="submit" value="Szukaj"/>
+      </form>
+      <!--{{cityName}} --><br/>
+      <p style="color:red;">{{apiResponse.error_message}}</p>
+      <p ng-repeat="prediction in apiResponse.predictions">{{ prediction.description }}</p>
+      {{lat}} {{lng}}<br/>
+      <p>Odpowiedź API:</p>
+      <pre>{{apiResponse | json}}</pre>
+    </div>
+    </div>
   </body>
 </html>

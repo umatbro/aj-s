@@ -1,22 +1,9 @@
-var phonecatApp = angular.module('phonecatApp', []);
+var weatherApp = angular.module('weather2App', []);
 
 //define the PhoneListController controller on the phonecatApp module
-phonecatApp.controller('PhoneListController', function PhoneListController($scope, $http) {
-  $scope.phones = [
-    {
-      name: "Nexus S",
-      snippet: "Fast just got faster with Nexus S."
-    }, {
-      name: 'Motorola XOOM™ with Wi-Fi',
-     snippet: 'The Next, Next Generation tablet.'
-    }, {
-     name: 'MOTOROLA XOOM™',
-     snippet: 'The Next, Next Generation tablet.'
-   }
- ];
-
- $scope.name = "world";
-$scope.cityName = "zende";
+weatherApp.controller('PhoneListController', function PhoneListController($scope, $http) {
+$scope.name = "world";
+$scope.cityName = "kato";
 var getQ = "http://codingchallenge.chathamfinancial.com/api/cities/search?byName=" + $scope.cityName;
 
    //https://www.w3schools.com/angular/angular_http.asp
