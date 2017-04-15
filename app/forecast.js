@@ -36,6 +36,6 @@ Forecast.prototype.getIcon = function(){
   return this.icon;
 }
 
-Forecast.prototype.setIcon(icon){
+Forecast.prototype.setIcon = function(icon){
   this.icon = icon;
 }

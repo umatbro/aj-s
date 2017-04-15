@@ -8,6 +8,8 @@
     <script src="forecast.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="weather-controller.js"></script>
+    <script src="city-list/city-list.module.js"></script>
+    <script src="city-list/city-list.component.js"></script>
   </head>
   <body ng-app="weatherApp">
     <div class="container-fluid" ng-controller="place_idController">
@@ -27,7 +29,6 @@
       <hr/>
       <h4>Top miasta</h4>
       <a href ng-click='getCoords("ChIJ0RhONcBEFkcRv4pHdrW2a7Q")'>Kraków</a>
-
     </div>
     <div class="col-md-8">
 
