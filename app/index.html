@@ -20,7 +20,7 @@
         <input type="submit" value="Szukaj"/>
       </form>
       <!--{{cityName}} --><br/>
-      <p style="color:red;">{{apiResponse.error_message}}</p>
+      <p class="error">{{apiResponse.error_message}}</p>
       <p ng-repeat="prediction in apiResponse.predictions">{{ prediction.description }}</p>
       {{lat}} {{lng}}<br/>
       <p>Odpowiedź API:</p>
