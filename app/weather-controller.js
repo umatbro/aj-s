@@ -17,4 +17,8 @@ angular.module('weatherApp', [])
         $scope.lng = $scope.apiResponse.result.geometry.location.lng;
       })
     }
+
+    $scope.setPlaceID = function(place_id){ //set scope.place_id
+      $scope.place_id = place_id;
+    }
   }]);

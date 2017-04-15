@@ -5,6 +5,7 @@
     <title>Simple weather</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="forecast.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="weather-controller.js"></script>
   </head>
@@ -18,9 +19,9 @@
         </button>
       </form>
       <div class="list-group">
-        <button ng-repeat="prediction in apiResponse.predictions" class="list-group-item" style="word-wrap: break-word;" ng-click='getCoords(prediction.place_id)'>
+        <button ng-repeat="prediction in apiResponse.predictions" class="list-group-item" style="word-wrap: break-word;" ng-click='getCoords(prediction.place_id); setPlaceID(prediction.place_id)'>
           {{prediction.description}}
-          <small>{{prediction.place_id}}</small>
+        <!--  <small>{{prediction.place_id}}</small> -->
         </button>
       </div>
       <hr/>
@@ -32,7 +33,7 @@
 
       <!--{{cityName}} --><br/>
       <p class="error">{{apiResponse.error_message}}</p>
-
+      {{place_id}}<br/>
       {{lat}} {{lng}}<br/>
 
 
