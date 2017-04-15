@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My HTML File</title>
+    <title>Simple weather</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="bower_components/angular/angular.js"></script>
@@ -12,7 +12,7 @@
     <div class="container-fluid" ng-controller="place_idController">
     <br/><br/>
     <div class="col-md-2">
-      <a ng-click="getCoords(ChIJ0RhONcBEFkcRv4pHdrW2a7Q)">Kraków</a>
+      <a href ng-click='getCoords("ChIJ0RhONcBEFkcRv4pHdrW2a7Q")'>Kraków</a>
     </div>
     <div class="col-md-8">
       <form ng-submit="searchCity($scope.cityName)">
