@@ -7,6 +7,8 @@ function Forecast(
   humidity,
   pressure,
   cloudCover,
+  temperatureMin,
+  temperatureMax,
   apparentTemperatureMin,
   apparentTemperatureMax
 ) {
@@ -18,6 +20,8 @@ function Forecast(
   this.humidity = humidity;
   this.pressure = pressure;
   this.cloudCover = cloudCover;
+  this.temperatureMin = temperatureMin;
+  this.temperatureMax = temperatureMax;
   this.apparentTemperatureMin = apparentTemperatureMin;
   this.apparentTemperatureMax = apparentTemperatureMax;
 }

@@ -8,36 +8,45 @@
     <script src="forecast.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="weather-controller.js"></script>
-    <script src="city-list/city-list.module.js"></script>
-    <script src="city-list/city-list.component.js"></script>
   </head>
   <body ng-app="weatherApp">
-    <div class="container-fluid" ng-controller="place_idController">
+    <div class="container-fluid" ng-controller="mainController">
     <div class="col-md-2">
       <form ng-submit="searchCity(cityName)">
         <input class="form-control" type="text" ng-model="cityName" placeholder="Wyszukaj miasto" />
         <button type="submit" class="btn btn-default">
-          <span class="glyphicon glyphicon-search"></span>Szukaj
+          <span class="glyphicon glyphicon-search"></span> Szukaj
         </button>
       </form>
       <div class="list-group">
-        <button ng-repeat="prediction in apiResponse.predictions" class="list-group-item" style="word-wrap: break-word;" ng-click='getCoords(prediction.place_id); setPlaceID(prediction.place_id)'>
+        <button ng-repeat="prediction in apiResponse.predictions" class="list-group-item" style="word-wrap: break-word;" ng-click='setPlaceID(prediction.place_id, prediction.description); getCoords(prediction.place_id);'>
           {{prediction.description}}
         <!--  <small>{{prediction.place_id}}</small> -->
         </button>
       </div>
       <hr/>
-      <h4>Top miasta</h4>
-      <a href ng-click='getCoords("ChIJ0RhONcBEFkcRv4pHdrW2a7Q")'>Kraków</a>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">Top miasta</h4>
+        </div>
+        <div class="panel-body">
+            <a href ng-click='getWeekForecast(50.06465009999999,19.9449799,"FORECAST_IO");setCitySelected("Kraków");'>Kraków</a>
+        </div>
+      </div>
     </div>
     <div class="col-md-8">
 
-      <!--{{cityName}} --><br/>
+      <h3>{{citySelected}} </h3><br/>
       <p class="error">{{apiResponse.error_message}}</p>
-      {{place_id}}<br/>
-      {{lat}} {{lng}}<br/>
 
 
+      <pre>
+        Coords: {{lat}} {{lng}}
+        place_id: {{place_id}}
+        citySelected: {{citySelected}}
+        sources: <span ng-repeat="source in sources">{{source}}, </span>
+        sourceSelected: {{sourceSelected}}
+      </pre>
       <pre>{{apiResponse | json}}</pre>
     </div>
     </div>
