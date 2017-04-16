@@ -42,7 +42,9 @@
       </nav>
 
       <div id="forecast-container" class="jumbotron text-center">
-        <h3>{{message}} </h3><br/>
+        <h3>{{message}}<br/>
+          <small>{{forecastCurrent.date}}</small>
+        </h3>
         <h1>{{forecastCurrent.temperature}}</h1>
         <p class="error">{{apiResponse.error_message}}</p>
 
@@ -94,19 +96,6 @@
         </table>
       </div>
 
-      <pre>
-Coords: {{lat}} {{lng}}
-place_id: {{place_id}}
-message: {{message}}
-citySelected: {{citySelected}}
-sources: <span ng-repeat="source in sources">{{source}}, </span>
-sourceSelected: {{sourceSelected}}
-displayForecast: {{displayForecast}}
-
-forecastCurrent.temperature: {{forecastCurrent.temperature}}
-<span ng-repeat="day in forecastWeek">{{day.date}}</br></span>
-      </pre>
-      <pre>{{apiResponse | json}}</pre>
     </div>
     </div>
   </body>
