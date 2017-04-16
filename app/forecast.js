@@ -1,6 +1,4 @@
 function Forecast(
-  summary,
-  icon,
   temperature,
   apparentTemperature,
   date,
@@ -12,8 +10,6 @@ function Forecast(
   apparentTemperatureMin,
   apparentTemperatureMax
 ) {
-  this.summary = summary;
-  this.icon = icon;
   this.temperature = temperature;
   this.apparentTemperature = apparentTemperature;
   this.date = date;
@@ -24,22 +20,14 @@ function Forecast(
   this.temperatureMax = temperatureMax;
   this.apparentTemperatureMin = apparentTemperatureMin;
   this.apparentTemperatureMax = apparentTemperatureMax;
+
+  //convert date
+  var date_ = new Date(this.date);
+  this.date = date_.toDateString();
 }
 
 
-//Getters, setters
-Forecast.prototype.getSummary = function(){
-  return this.summary;
-}
-
-Forecast.prototype.setSummary = function(summary){
-  this.summary = summary;
-}
-
-Forecast.prototype.getIcon = function(){
-  return this.icon;
-}
-
-Forecast.prototype.setIcon = function(icon){
-  this.icon = icon;
+//convert F to celsius
+function farToCel(far){
+  return ((far - 32)*(5.0/9.0)).toFixed(2);
 }

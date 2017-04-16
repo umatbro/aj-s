@@ -10,8 +10,8 @@
     <script src="weather-controller.js"></script>
   </head>
   <body ng-app="weatherApp">
-    <div class="container-fluid" ng-controller="mainController">
-    <div class="col-md-2">
+    <div class="container-fluid col-xs-12" ng-controller="mainController">
+    <div class="col-md-2 col-xs-4">
       <form ng-submit="searchCity(cityName)">
         <input class="form-control" type="text" ng-model="cityName" placeholder="Wyszukaj miasto" />
         <button type="submit" class="btn btn-default">
@@ -19,7 +19,7 @@
         </button>
       </form>
       <div class="list-group">
-        <button ng-repeat="prediction in apiResponse.predictions" class="list-group-item" style="word-wrap: break-word;" ng-click='setPlaceID(prediction.place_id, prediction.description); getCoords(prediction.place_id);'>
+        <button ng-repeat="prediction in apiResponse.predictions" class="list-group-item" style="word-wrap: break-word;" ng-click='setPlaceID(prediction.place_id, prediction.description); getCoords(prediction.place_id);setMessage("Wybierz usługę")'>
           {{prediction.description}}
         <!--  <small>{{prediction.place_id}}</small> -->
         </button>
@@ -30,22 +30,81 @@
           <h4 class="panel-title">Top miasta</h4>
         </div>
         <div class="panel-body">
-            <a href ng-click='getWeekForecast(50.06465009999999,19.9449799,"FORECAST_IO");setCitySelected("Kraków");'>Kraków</a>
+            <a href ng-click='setCoords(50.06465009999999,19.9449799);setCitySelected("Kraków");getWeekForecast(lat,lng,sourceSelected)'>Kraków</a>
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-xs-12">
+      <nav aria-label="...">
+        <ul class="pager">
+          <li><a href ng-repeat="source in sources" ng-click="getWeekForecast(lat,lng,source)">{{source}}</a></li>
+        </ul>
+      </nav>
 
-      <h3>{{citySelected}} </h3><br/>
-      <p class="error">{{apiResponse.error_message}}</p>
+      <div id="forecast-container" class="jumbotron text-center">
+        <h3>{{message}} </h3><br/>
+        <h1>{{forecastCurrent.temperature}}</h1>
+        <p class="error">{{apiResponse.error_message}}</p>
 
+        <table class="table table-bordered" style="visibility:{{displayForecast}}">
+          <thead>
+            <tr>
+              <th>Odczuwalna</th>
+              <th>Wilgotność</th>
+              <th>Ciśnienie</th>
+              <th>Zachmurzenie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{forecastCurrent.apparentTemperature}}</td>
+              <td>{{forecastCurrent.humidity}} %</td>
+              <td>{{forecastCurrent.pressure}} hPa</td>
+              <td>{{forecastCurrent.cloudCover}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="well well-lg" ng-repeat="day in forecastWeek" style="visibility:{{displayForecast}}">
+        <h4>{{day.date}}</h4>
+        <table class="table table-bordered" style="visibility:{{displayForecast}}">
+          <thead>
+            <tr>
+              <th>Temperatura min.</th>
+              <th>Temperatura max.</th>
+              <th>Odczuwalna min.</th>
+              <th>Odczuwalna max.</th>
+              <th>Wilgotność</th>
+              <th>Ciśnienie</th>
+              <th>Zachmurzenie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{day.temperatureMin}}</td>
+              <td>{{day.temperatureMax}}</td>
+              <td>{{day.apparentTemperatureMin}}</td>
+              <td>{{day.apparentTemperatureMax}}</td>
+              <td>{{day.humidity}} %</td>
+              <td>{{day.pressure}} hPa</td>
+              <td>{{day.cloudCover}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <pre>
-        Coords: {{lat}} {{lng}}
-        place_id: {{place_id}}
-        citySelected: {{citySelected}}
-        sources: <span ng-repeat="source in sources">{{source}}, </span>
-        sourceSelected: {{sourceSelected}}
+Coords: {{lat}} {{lng}}
+place_id: {{place_id}}
+message: {{message}}
+citySelected: {{citySelected}}
+sources: <span ng-repeat="source in sources">{{source}}, </span>
+sourceSelected: {{sourceSelected}}
+displayForecast: {{displayForecast}}
+
+forecastCurrent.temperature: {{forecastCurrent.temperature}}
+<span ng-repeat="day in forecastWeek">{{day.date}}</br></span>
       </pre>
       <pre>{{apiResponse | json}}</pre>
     </div>
