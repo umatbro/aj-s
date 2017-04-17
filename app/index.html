@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="forecast.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
     <script src="weather-controller.js"></script>
   </head>
   <body ng-app="weatherApp">
@@ -72,6 +72,7 @@
         </table>
       </div>
 
+      <h2 style="visibility:{{displayForecast}}">Prognoza na kolejne dni</h2>
       <div class="well well-lg" ng-repeat="day in forecastWeek" style="visibility:{{displayForecast}}">
         <h4>{{day.date}}</h4>
         <table class="table table-bordered" style="visibility:{{displayForecast}}">
