@@ -1,4 +1,4 @@
 /node_modules
 /bower_components
 /scripts
-/app/bower_components
+/e2e-tests
